@@ -31,7 +31,12 @@
                 "EURUSD",
                 "USDJPY",
                 "US10Year"
-            ]
+            ],
+            baseApi: "http://139.196.188.130:8086/",
+            priceApi: "real?en_prod_code=",
+            priceApiField: "&fields=prod_name,last_px,px_change,px_change_rate",
+            klineApi: "kline?prod_code=",
+            klineApiField: "&candle_period=1&data_count=5&end_time=0&fields=time_stamp,open_px,close_px,high_px,low_px",
         }
     }).init();
 </script>
