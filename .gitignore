@@ -14,7 +14,7 @@ npm-debug.log
 .node_repl_history
 
 .idea
-dist
+#dist
 manifest
 mocked_server/__api_path# Coverage directory used by tools like istanbul
                         coverage
@@ -39,6 +39,6 @@ mocked_server/__api_path# Coverage directory used by tools like istanbul
                         .node_repl_history
 
                         .idea
-                        dist
+#                        dist
                         manifest
                         mocked_server/__api_path

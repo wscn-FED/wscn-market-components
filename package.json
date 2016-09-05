@@ -1,7 +1,7 @@
 {
-  "name": "create-react-bolierplate",
-  "version": "0.0.1",
-  "description": "quickly start",
+  "name": "wscn-market-components",
+  "version": "0.0.2",
+  "description": "wscn-market-components",
   "scripts": {
     "start": "node ./scripts/start.js",
     "build": " node ./scripts/build.js",
@@ -15,7 +15,7 @@
     "email": "466595307@qq.com"
   },
   "bugs": {
-    "url": "https://github.com/PanJiaChen/create-react-bolierplate/issues"
+    "url": "https://github.com/wscn-FED/wscn-market-components/issues"
   },
   "license": "MIT",
   "devDependencies": {
