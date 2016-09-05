@@ -1,41 +1,71 @@
 import React, {Component} from "react";
-
+import "./lineChat.scss";
 
 export default class LineChart extends Component {
+    state = {
+        dataPoints: "0,50 200,0"
+    };
 
     componentDidMount() {
 
+        this.handleLineData(this.props.klineData);
     }
 
-    handleLineData( prodCodeArray, id){
-        var _result = [].concat(prodCodeArray).sort(function( formerDot, latterDot ){
-            return formerDot[1] - latterDot[1]
-        })
-        var minValue = _result[0][1];
-        var maxValue = _result[_result.length-1][1]
-        var finalDots = cookCharts( prodCodeArray, minValue, maxValue );
-        $('#' + id)
-            .show()
-            .find('polyline')
-            .attr('points',finalDots);
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.state == nextState) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    componentDidUpdate() {
+        console.log('line chart update')
+    }
+
+    handleLineData(dataArray) {
+        var minValue = Math.min.apply(null, dataArray);
+        var maxValue = Math.max.apply(null, dataArray);
+        var finalDots = this.cookCharts(dataArray, minValue, maxValue);
+        this.setState({
+            dataPoints: finalDots
+        });
+
     }
 
 
     cookCharts(dataArray, minValue, maxValue) {
-        var chartWidth = 190;
-        var chartHeight = 48;
+        var chartWidth = 80;
+        var chartHeight = 34;
         var valueDelta = maxValue - minValue;
-        var dotArray = dataArray.map(function (value, index) {
-            var y = ( maxValue - value[1]) / valueDelta * chartHeight;
-            var x = index / (dataArray.length) * chartWidth;
-            return x + ',' + y;
-        })
+
+        // console.log(valueDelta )
+        var dotArray = dataArray.map((value, index)=> {
+            if (valueDelta == 0) {
+                return 0 + ',' + 0;
+            } else {
+                var y = ( maxValue - value) / valueDelta * chartHeight;
+                var x = index / (dataArray.length) * chartWidth;
+                return x + ',' + y;
+            }
+
+        });
         return dotArray.join(' ');
     }
 
     render() {
-        return(
-            <div>pppppppp</div>
+        const state = this.state;
+        return (
+            <svg>
+                <polyline
+                    className="path"
+                    fill="none"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                    points={state.dataPoints}/>
+            </svg>
         )
     }
 }

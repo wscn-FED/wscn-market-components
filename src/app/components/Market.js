@@ -17,7 +17,7 @@ export default class Market extends Component {
         const priceAjaxConfig = {
             url: priceUrl,
             isLoop: true,
-            minInterval: 1000,
+            minInterval: 4000,
             dataType: 'json',
             successFn: this.setPriceData.bind(this)
         };

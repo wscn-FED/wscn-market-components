@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import classNames from "classnames";
 import LineChart from "./LineChart";
 
 export default class MarketItem extends Component {
@@ -13,10 +14,7 @@ export default class MarketItem extends Component {
                 changeRate: "px_change_rate"
             },
             kline: {
-                name: "prod_name",
-                lastPrice: "last_px",
-                change: "px_change",
-                changeRate: "px_change_rate"
+                closePx: "close_px"
             }
         }
 
@@ -24,6 +22,10 @@ export default class MarketItem extends Component {
 
     componentDidMount() {
         console.log('market-item didmount');
+    }
+
+    componentDidUpdate() {
+        console.log('item update')
     }
 
     componentWillReceiveProps() {
@@ -36,20 +38,58 @@ export default class MarketItem extends Component {
         return props.data[type][index];
     };
 
+    justUpORdown = (num) => {
+        var bool = false;
+        if (+num >= 0) {
+            bool = true;
+        }
+        return bool;
+    };
+
+    fixNum = (num, digit, type)=> {
+        if (!num) return;
+        let _num = num.toFixed(digit);
+        if (+num >= 0) {
+            _num = '+' + _num;
+        } else {
+            _num = _num;
+        }
+        if (type == 'rate') {
+            return _num + '%';
+        } else {
+            return _num
+        }
+
+    };
+
     render() {
         const props = this.props;
+        const state = this.state;
         // console.log(this.props.priceData);
         const symbolName = this.getData("name", "price");
         const lastPrice = this.getData("lastPrice", "price");
-        const change = this.getData("change", "price");
-        const changeRate = this.getData("changeRate", "price");
+        const change = this.fixNum(this.getData("change", "price"), 4);
+        const changeRate = this.fixNum(this.getData("changeRate", "price"), 2, "rate");
+        const klineData = props.data.kline;
+        const upORdownBool = this.justUpORdown(change);
+        const upORdownClass = classNames({up: upORdownBool}, {'down': !upORdownBool});
         return (
             <div className="market-item-container">
-                {symbolName}
-                {lastPrice}
-                {change}
-                {changeRate}
-                <LineChart />
+                <div className="market-quotecard-container">
+                    <div className="market-quotecard-left">
+                        <div className="symbol-name{}">{symbolName}</div>
+                        <div className="last-price">{lastPrice}</div>
+                    </div>
+                    <div className="market-quotecard-right">
+                        <div className={"change " + upORdownClass}>{change}</div>
+                        <div className={"change-rate " + upORdownClass}> {changeRate}</div>
+                    </div>
+                </div>
+
+                {(klineData.length)
+                    ? <LineChart klineData={klineData}/>
+                    : null
+                }
             </div>
 
         );

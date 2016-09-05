@@ -9,8 +9,8 @@ export default  {
             success: config.successFn,
             minInterval: config.minInterval
         })
-        countAjax.setLoop(false).request();
-        console.log('aaaaa')
+        countAjax.setLoop(true).request();
+        console.log('price ajax')
     },
 
     loadKlineDataAjax(config) {
