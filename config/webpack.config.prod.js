@@ -6,6 +6,10 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var url = require('url');
 var paths = require('./paths');
 
+var Dashboard = require('webpack-dashboard');
+var DashboardPlugin = require('webpack-dashboard/plugin');
+var dashboard = new Dashboard();
+
 var assetsMap = require('../manifest/webpack-assets.json');
 var vendor_dll = assetsMap.vendor_dll.js;
 
@@ -143,6 +147,7 @@ module.exports = {
                 screw_ie8: true
             }
         }),
+        new DashboardPlugin(dashboard.setData),
         new ExtractTextPlugin('static/css/[name].css')
     ]
 };

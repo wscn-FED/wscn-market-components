@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import MarketItem from "./Market-item";
-import "./main.scss";
+import "./marketComponents-default.scss";
 import MarketsData from "../models/MarketModel";
 
 
