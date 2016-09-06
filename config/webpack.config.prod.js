@@ -9,8 +9,9 @@ var paths = require('./paths');
 var assetsMap = require('../manifest/webpack-assets.json');
 var vendor_dll = assetsMap.vendor_dll.js;
 
-var homepagePath = require(paths.appPackageJson).homepage;
-var publicPath = homepagePath ? url.parse(homepagePath).pathname : '/';
+// var homepagePath = require(paths.appPackageJson).homepage;
+// var publicPath = homepagePath ? url.parse(homepagePath).pathname : '/';
+var publicPath = '/';
 if (!publicPath.endsWith('/')) {
     // Prevents incorrect paths in file-loader
     publicPath += '/';
@@ -28,8 +29,7 @@ module.exports = {
         filename: 'static/js/[name].js',
         chunkFilename: 'static/js/[name].js',
         publicPath: publicPath,
-        libraryTarget: 'umd',
-        umdNamedDefine: true
+        libraryTarget: "var"
     },
     resolve: {
         extensions: ['', '.js', '.json'],
@@ -135,7 +135,8 @@ module.exports = {
                 warnings: false
             },
             mangle: {
-                screw_ie8: true
+                screw_ie8: true,
+                except: ['$super', '$', 'exports', 'require','define']
             },
             output: {
                 comments: false,

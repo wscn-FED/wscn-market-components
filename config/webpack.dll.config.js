@@ -25,8 +25,7 @@ var config = {
         path: path.resolve("build/static/vendor"),
         filename: "[name].js",
         library: "[name]", //和DllPlugin的name对应
-        libraryTarget: 'umd',
-        umdNamedDefine: true
+        libraryTarget: 'var',
     },
     plugins: [
         new AssetsPlugin({
@@ -69,7 +68,7 @@ if (process.env.NODE_ENV == 'production') {
     config.plugins.push(
         new webpack.DllPlugin({
             path: path.resolve("manifest", "vendor-manifest-dev.json"),
-            name: "[name]_[hash]"
+            name: "[name]"
         })
     )
 }
