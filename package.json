@@ -1,7 +1,8 @@
 {
   "name": "wscn-market-components",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "wscn-market-components",
+  "main": "dist/js/main.js",
   "scripts": {
     "start": "node ./scripts/start.js",
     "build": " node ./scripts/build.js",
@@ -10,6 +11,10 @@
     "build-dev": "npm run dll-dev && node ./scripts/start.js",
     "build-prod": "npm run dll && node ./scripts/build.js"
   },
+  "keywords": [
+    "react",
+    "compinents"
+  ],
   "author": {
     "name": "PanJiaChen",
     "email": "466595307@qq.com"
@@ -17,6 +22,7 @@
   "bugs": {
     "url": "https://github.com/wscn-FED/wscn-market-components/issues"
   },
+  "homepage": "https://github.com/wscn-FED/wscn-market-components",
   "license": "MIT",
   "devDependencies": {
     "assets-webpack-plugin": "^3.4.0",

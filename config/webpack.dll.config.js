@@ -5,7 +5,6 @@ var AssetsPlugin = require('assets-webpack-plugin');
 var paths = require('./paths');
 
 var deps = require('../package.json').dependencies;
-delete deps['antd'];// antd 使用官方的 babel-plugin-antd
 
 console.log(Object.keys(deps));
 
@@ -25,8 +24,9 @@ var config = {
     output: {
         path: path.resolve("build/static/vendor"),
         filename: "[name].js",
-        library: "[name]_[hash]", //和DllPlugin的name对应
-        libraryTarget: "var"
+        library: "[name]", //和DllPlugin的name对应
+        libraryTarget: 'umd',
+        umdNamedDefine: true
     },
     plugins: [
         new AssetsPlugin({
@@ -44,7 +44,7 @@ var config = {
 };
 
 if (process.env.NODE_ENV == 'production') {
-    config.output.filename = '[name].[hash].dll.js';
+    config.output.filename = '[name].dll.js';
     config.plugins = config.plugins.concat(
         [
             new webpack.DefinePlugin({
@@ -59,7 +59,7 @@ if (process.env.NODE_ENV == 'production') {
             }),
             new webpack.DllPlugin({
                 path: path.resolve("manifest", "vendor-manifest.json"),
-                name: "[name]_[hash]"
+                name: "[name]"
             }),
             new webpack.optimize.DedupePlugin(),
             new webpack.optimize.AggressiveMergingPlugin

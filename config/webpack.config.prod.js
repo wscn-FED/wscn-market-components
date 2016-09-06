@@ -25,9 +25,11 @@ module.exports = {
     ],
     output: {
         path: paths.appBuild,
-        filename: 'static/js/[name].[chunkhash:8].js',
-        chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
-        publicPath: publicPath
+        filename: 'static/js/[name].js',
+        chunkFilename: 'static/js/[name].js',
+        publicPath: publicPath,
+        libraryTarget: 'umd',
+        umdNamedDefine: true
     },
     resolve: {
         extensions: ['', '.js', '.json'],
@@ -140,6 +142,6 @@ module.exports = {
                 screw_ie8: true
             }
         }),
-        new ExtractTextPlugin('static/css/[name].[contenthash:8].css')
+        new ExtractTextPlugin('static/css/[name].css')
     ]
 };
