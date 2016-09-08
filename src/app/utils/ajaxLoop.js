@@ -1,8 +1,7 @@
 /**
  * Created by jiachenpan on 16/8/31.
  */
-import reqwest from "reqwest";
-
+import axios from "axios";
 function noop() {
 }
 
@@ -46,16 +45,11 @@ export default class AjaxMgr {
     request() {
         this.time = Date.now();
         var that = this;
-        reqwest({
-            url: that.url
-            , type: that.dataType
-            // , crossOrigin: that.cors
-            // , withCredentials: that.cors
-            , success: function (e) {
-                that.success(e);
+        axios.get(that.url)
+            .then(function (response) {
+                that.success(response.data);
                 if (!that.isLoop)return;
                 var now = Date.now();
-
                 var diff = now - that.time;
                 var remain = that.minInterval - diff;
                 if (remain > 0) {
@@ -65,9 +59,9 @@ export default class AjaxMgr {
                 } else {
                     that.request()
                 }
-            }
-            , error: function (e) {
-                that.error(e);
+            })
+            .catch(function (error) {
+                that.error(error);
                 if (!that.isLoop) {
                     return;
                 }
@@ -85,8 +79,7 @@ export default class AjaxMgr {
                 } else {
                     that.request()
                 }
-            }
-        });
+            });
         return this;
     }
 

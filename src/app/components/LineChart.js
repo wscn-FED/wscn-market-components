@@ -7,12 +7,11 @@ export default class LineChart extends Component {
     };
 
     componentDidMount() {
-
         this.handleLineData(this.props.klineData);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (this.state == nextState) {
+        if (this.state === nextState) {
             return false;
         } else {
             return true;
@@ -20,36 +19,27 @@ export default class LineChart extends Component {
 
     }
 
-    componentDidUpdate() {
-        console.log('line chart update')
-    }
-
     handleLineData(dataArray) {
-        var minValue = Math.min.apply(null, dataArray);
-        var maxValue = Math.max.apply(null, dataArray);
-        var finalDots = this.cookCharts(dataArray, minValue, maxValue);
+       const minValue = Math.min.apply(null, dataArray);
+        const maxValue = Math.max.apply(null, dataArray);
+        const finalDots = this.cookCharts(dataArray, minValue, maxValue);
         this.setState({
             dataPoints: finalDots
         });
-
     }
 
-
     cookCharts(dataArray, minValue, maxValue) {
-        var chartWidth = 80;
-        var chartHeight = 34;
-        var valueDelta = maxValue - minValue;
-
-        // console.log(valueDelta )
-        var dotArray = dataArray.map((value, index)=> {
-            if (valueDelta == 0) {
+        const chartWidth = 80;
+        const chartHeight = 34;
+        const valueDelta = maxValue - minValue;
+        const dotArray = dataArray.map((value, index)=> {
+            if (valueDelta === 0) {
                 return 0 + ',' + 0;
             } else {
                 var y = ( maxValue - value) / valueDelta * chartHeight;
                 var x = index / (dataArray.length) * chartWidth;
                 return x + ',' + y;
             }
-
         });
         return dotArray.join(' ');
     }

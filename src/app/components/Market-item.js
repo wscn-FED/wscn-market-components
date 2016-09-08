@@ -20,18 +20,6 @@ export default class MarketItem extends Component {
 
     }
 
-    componentDidMount() {
-        console.log('market-item didmount');
-    }
-
-    componentDidUpdate() {
-        console.log('item update')
-    }
-
-    componentWillReceiveProps() {
-        // console.log('b');
-    }
-
     getData = (name, type) => {
         const props = this.props;
         const index = props.fields[type].indexOf(this.fieldsMap[type][name]);
@@ -51,21 +39,16 @@ export default class MarketItem extends Component {
         let _num = num.toFixed(digit);
         if (+num >= 0) {
             _num = '+' + _num;
-        } else {
-            _num = _num;
         }
-        if (type == 'rate') {
+        if (type === 'rate') {
             return _num + '%';
         } else {
             return _num
         }
-
     };
 
     render() {
         const props = this.props;
-        const state = this.state;
-        // console.log(this.props.priceData);
         const symbolName = this.getData("name", "price");
         const lastPrice = this.getData("lastPrice", "price");
         const change = this.fixNum(this.getData("change", "price"), 4);
@@ -91,7 +74,6 @@ export default class MarketItem extends Component {
                     : null
                 }
             </div>
-
         );
     }
 }

@@ -8,7 +8,7 @@ export default  {
             dataType: config.dataType,
             success: config.successFn,
             minInterval: config.minInterval
-        })
+        });
         countAjax.setLoop(true).request();
         console.log('price ajax')
     },
@@ -19,7 +19,7 @@ export default  {
             dataType: config.dataType,
             success: config.successFn,
             minInterval: config.minInterval
-        })
+        });
         countAjax.setLoop(false).request();
         console.log('kline ajax')
     }

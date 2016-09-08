@@ -10,15 +10,13 @@ export default class Market extends Component {
         klineData: null
     };
 
-
     componentDidMount() {
-        const props = this.props;
+        let props = this.props;
         const priceUrl = this.createAjaxUrl(props.baseApi, props.priceApi, props.symbols, props.priceApiField);
         const priceAjaxConfig = {
             url: priceUrl,
             isLoop: true,
-            minInterval: 4000,
-            dataType: 'json',
+            minInterval: props.priceMinInterval,
             successFn: this.setPriceData.bind(this)
         };
         MarketsData.loadPriceDataAjax(priceAjaxConfig);
@@ -27,8 +25,6 @@ export default class Market extends Component {
         const klineAjaxConfig = {
             url: klineUrl,
             isLoop: false,
-            minInterval: 1000,
-            dataType: 'json',
             successFn: this.setKlineData.bind(this)
         };
         MarketsData.loadKlineDataAjax(klineAjaxConfig);
@@ -36,29 +32,24 @@ export default class Market extends Component {
     }
 
     componentWillReceiveProps() {
-        console.log('b');
 
     }
 
     setPriceData(res) {
-
         this.setState({
             priceData: res.data
         });
-        console.log('price');
     }
 
     setKlineData(res) {
-
         this.setState({
             klineData: res.data
         });
-        console.log('kline');
     }
 
     createAjaxUrl(baseApi, serchApi, symbols, apiField) {
         var symbolsUrl = symbols.join(',');
-        return baseApi + serchApi + symbols + apiField
+        return baseApi + serchApi + symbolsUrl + apiField
     }
 
 
