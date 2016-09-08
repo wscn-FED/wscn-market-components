@@ -1,4 +1,5 @@
 var path = require('path');
+var fs = require('fs');
 var autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -9,10 +10,7 @@ var paths = require('./paths');
 var Dashboard = require('webpack-dashboard');
 var DashboardPlugin = require('webpack-dashboard/plugin');
 var dashboard = new Dashboard();
-
-var assetsMap = require('../manifest/webpack-assets.json');
-var vendor_dll = assetsMap.vendor_dll.js;
-
+var vendor = 'wscn-react-vendor.min.js';
 // var homepagePath = require(paths.appPackageJson).homepage;
 // var publicPath = homepagePath ? url.parse(homepagePath).pathname : '/';
 var publicPath = '/';
@@ -20,7 +18,7 @@ if (!publicPath.endsWith('/')) {
     // Prevents incorrect paths in file-loader
     publicPath += '/';
 }
-
+const outputFileName = 'react-market.min.js'
 module.exports = {
     bail: true,
     devtool: 'source-map',
@@ -30,10 +28,11 @@ module.exports = {
     ],
     output: {
         path: paths.appBuild,
-        filename: 'static/js/[name].js',
+        filename: 'static/js/' + outputFileName,
         chunkFilename: 'static/js/[name].js',
         publicPath: publicPath,
-        libraryTarget: "var"
+        libraryTarget: 'umd',
+        umdNamedDefine: true
     },
     resolve: {
         extensions: ['', '.js', '.json'],
@@ -49,6 +48,26 @@ module.exports = {
             'babel-runtime/regenerator': require.resolve('babel-runtime/regenerator'),
             'config': paths.appConfig + (process.env.NODE_ENV || "development") + '.js',
         }
+    },
+    externals: {
+        'react': {
+            root: 'React',
+            commonjs: 'react',
+            commonjs2: 'react',
+            amd: 'react'
+        },
+        'react-dom': {
+            root: 'ReactDOM',
+            commonjs: 'react-dom',
+            commonjs2: 'react-dom',
+            amd: 'react-dom',
+        },
+        'react-addons-css-transition-group': {
+            root: ['React', 'addons', 'CSSTransitionGroup'],
+            commonjs: 'react-addons-css-transition-group',
+            commonjs2: 'react-addons-css-transition-group',
+            amd: 'react-addons-css-transition-group'
+        },
     },
     resolveLoader: {
         root: paths.ownNodeModules,
@@ -112,7 +131,7 @@ module.exports = {
             inject: true,
             template: paths.appHtml,
             favicon: paths.appFavicon,
-            vendor_dll: vendor_dll,
+            vendor_dll: vendor,
             minify: {
                 removeComments: true,
                 collapseWhitespace: true,
@@ -129,10 +148,6 @@ module.exports = {
         new webpack.DefinePlugin({'process.env.NODE_ENV': '"production"'}),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.DedupePlugin(),
-        new webpack.DllReferencePlugin({
-            context: '.',
-            manifest: require(paths.manifestSrc + '/vendor-manifest.json'),
-        }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 screw_ie8: true,
@@ -140,7 +155,7 @@ module.exports = {
             },
             mangle: {
                 screw_ie8: true,
-                except: ['$super', '$', 'exports', 'require','define']
+                except: ['$super', '$', 'exports', 'require']
             },
             output: {
                 comments: false,
