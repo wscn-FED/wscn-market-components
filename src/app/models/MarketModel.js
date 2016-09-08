@@ -1,7 +1,7 @@
-import AjaxMgr from "../utils/ajaxLoop";
+import AjaxMgr from '../utils/ajaxLoop';
 
 
-export default  {
+export default {
     loadPriceDataAjax(config) {
         const countAjax = new AjaxMgr({
             url: config.url,
@@ -10,7 +10,6 @@ export default  {
             minInterval: config.minInterval
         });
         countAjax.setLoop(true).request();
-        console.log('price ajax')
     },
 
     loadKlineDataAjax(config) {
@@ -21,8 +20,6 @@ export default  {
             minInterval: config.minInterval
         });
         countAjax.setLoop(false).request();
-        console.log('kline ajax')
     }
+};
 
-
-}

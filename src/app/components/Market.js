@@ -1,7 +1,7 @@
-import React, {Component} from "react";
-import MarketItem from "./Market-item";
-import "./marketComponents-default.scss";
-import MarketsData from "../models/MarketModel";
+import React, {Component} from 'react';
+import MarketItem from './Market-item';
+import './marketComponents-default.scss';
+import MarketsData from '../models/MarketModel';
 
 
 export default class Market extends Component {
@@ -11,7 +11,7 @@ export default class Market extends Component {
     };
 
     componentDidMount() {
-        let props = this.props;
+        const props = this.props;
         const priceUrl = this.createAjaxUrl(props.baseApi, props.priceApi, props.symbols, props.priceApiField);
         const priceAjaxConfig = {
             url: priceUrl,
@@ -28,7 +28,6 @@ export default class Market extends Component {
             successFn: this.setKlineData.bind(this)
         };
         MarketsData.loadKlineDataAjax(klineAjaxConfig);
-
     }
 
     componentWillReceiveProps() {
@@ -48,34 +47,32 @@ export default class Market extends Component {
     }
 
     createAjaxUrl(baseApi, serchApi, symbols, apiField) {
-        var symbolsUrl = symbols.join(',');
-        return baseApi + serchApi + symbolsUrl + apiField
+        const symbolsUrl = symbols.join(',');
+        return baseApi + serchApi + symbolsUrl + apiField;
     }
-
-
     render() {
-        let symbolsArr = this.props.symbols;
+        const symbolsArr = this.props.symbols;
         const marketComponents = symbolsArr.map((item) => {
             let priceData = {};
             let klineData = {};
             let priceFields = [];
             let klineFields = [];
             if (this.state.priceData) {
-                let dataObj = this.state.priceData.snapshot;
+                const dataObj = this.state.priceData.snapshot;
                 priceData = dataObj[item];
-                priceFields = dataObj["fields"];
+                priceFields = dataObj.fields;
             }
 
             if (this.state.klineData) {
-                let dataObj = this.state.klineData.candle;
+                const dataObj = this.state.klineData.candle;
                 klineData = dataObj[item];
-                klineFields = dataObj["fields"];
+                klineFields = dataObj.fields;
             }
             const data = {
                 symbol: item,
                 data: {
                     price: priceData,
-                    kline: klineData,
+                    kline: klineData
                 },
                 fields: {
                     price: priceFields,
@@ -86,6 +83,6 @@ export default class Market extends Component {
             return (<MarketItem key={item} {...data} />);
         });
 
-        return <div className="market-component-container"> {marketComponents} </div>
+        return <div className="market-component-container"> {marketComponents} </div>;
     }
 }

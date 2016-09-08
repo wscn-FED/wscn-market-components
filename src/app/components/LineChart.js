@@ -1,9 +1,9 @@
-import React, {Component} from "react";
-import "./lineChat.scss";
+import React, {Component} from 'react';
+import './lineChat.scss';
 
 export default class LineChart extends Component {
     state = {
-        dataPoints: "0,50 200,0"
+        dataPoints: '0,50 200,0'
     };
 
     componentDidMount() {
@@ -13,14 +13,12 @@ export default class LineChart extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         if (this.state === nextState) {
             return false;
-        } else {
-            return true;
         }
-
+        return true;
     }
 
     handleLineData(dataArray) {
-       const minValue = Math.min.apply(null, dataArray);
+        const minValue = Math.min.apply(null, dataArray);
         const maxValue = Math.max.apply(null, dataArray);
         const finalDots = this.cookCharts(dataArray, minValue, maxValue);
         this.setState({
@@ -32,14 +30,13 @@ export default class LineChart extends Component {
         const chartWidth = 80;
         const chartHeight = 34;
         const valueDelta = maxValue - minValue;
-        const dotArray = dataArray.map((value, index)=> {
+        const dotArray = dataArray.map((value, index) => {
             if (valueDelta === 0) {
                 return 0 + ',' + 0;
-            } else {
-                var y = ( maxValue - value) / valueDelta * chartHeight;
-                var x = index / (dataArray.length) * chartWidth;
-                return x + ',' + y;
             }
+            const y = (maxValue - value) / valueDelta * chartHeight;
+            const x = index / (dataArray.length) * chartWidth;
+            return x + ',' + y;
         });
         return dotArray.join(' ');
     }
@@ -56,6 +53,6 @@ export default class LineChart extends Component {
                     strokeLinecap="round"
                     points={state.dataPoints}/>
             </svg>
-        )
+        );
     }
 }

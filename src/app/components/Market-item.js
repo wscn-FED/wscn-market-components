@@ -1,6 +1,6 @@
-import React, {Component} from "react";
-import classNames from "classnames";
-import LineChart from "./LineChart";
+import React, {Component} from 'react';
+import classNames from 'classnames';
+import LineChart from './LineChart';
 
 export default class MarketItem extends Component {
 
@@ -8,16 +8,15 @@ export default class MarketItem extends Component {
         super(props);
         this.fieldsMap = {
             price: {
-                name: "prod_name",
-                lastPrice: "last_px",
-                change: "px_change",
-                changeRate: "px_change_rate"
+                name: 'prod_name',
+                lastPrice: 'last_px',
+                change: 'px_change',
+                changeRate: 'px_change_rate'
             },
             kline: {
-                closePx: "close_px"
+                closePx: 'close_px'
             }
-        }
-
+        };
     }
 
     getData = (name, type) => {
@@ -27,35 +26,34 @@ export default class MarketItem extends Component {
     };
 
     justUpORdown = (num) => {
-        var bool = false;
+        let bool = false;
         if (+num >= 0) {
             bool = true;
         }
         return bool;
     };
 
-    fixNum = (num, digit, type)=> {
+    fixNum = (num, digit, type) => {
         if (!num) return;
-        let _num = num.toFixed(digit);
+        let fixedNum = num.toFixed(digit);
         if (+num >= 0) {
-            _num = '+' + _num;
+            fixedNum = '+' + fixedNum;
         }
         if (type === 'rate') {
-            return _num + '%';
-        } else {
-            return _num
+            return fixedNum + '%';
         }
+        return fixedNum;
     };
 
     render() {
         const props = this.props;
-        const symbolName = this.getData("name", "price");
-        const lastPrice = this.getData("lastPrice", "price");
-        const change = this.fixNum(this.getData("change", "price"), 4);
-        const changeRate = this.fixNum(this.getData("changeRate", "price"), 2, "rate");
+        const symbolName = this.getData('name', 'price');
+        const lastPrice = this.getData('lastPrice', 'price');
+        const change = this.fixNum(this.getData('change', 'price'), 4);
+        const changeRate = this.fixNum(this.getData('changeRate', 'price'), 2, 'rate');
         const klineData = props.data.kline;
         const upORdownBool = this.justUpORdown(change);
-        const upORdownClass = classNames({up: upORdownBool}, {'down': !upORdownBool});
+        const upORdownClass = classNames({up: upORdownBool}, {down: !upORdownBool});
         return (
             <div className="market-item-container">
                 <div className="market-quotecard-container">
@@ -64,8 +62,8 @@ export default class MarketItem extends Component {
                         <div className="last-price">{lastPrice}</div>
                     </div>
                     <div className="market-quotecard-right">
-                        <div className={"change " + upORdownClass}>{change}</div>
-                        <div className={"change-rate " + upORdownClass}> {changeRate}</div>
+                        <div className={'change ' + upORdownClass}>{change}</div>
+                        <div className={'change-rate ' + upORdownClass}> {changeRate}</div>
                     </div>
                 </div>
 

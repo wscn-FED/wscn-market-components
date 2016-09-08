@@ -1,7 +1,6 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import MarketContainer from "./components/Market";
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import MarketContainer from './components/Market';
 
 export default class MarketComponents {
     constructor(options = {}) {
@@ -17,6 +16,5 @@ export default class MarketComponents {
 }
 
 // export
-!function (exports) {
-    exports.MarketComponents = MarketComponents
-}(window);
+exports.MarketComponents = MarketComponents;
+

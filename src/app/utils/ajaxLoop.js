@@ -1,7 +1,8 @@
 /**
  * Created by jiachenpan on 16/8/31.
  */
-import axios from "axios";
+import axios from 'axios';
+
 function noop() {
 }
 
@@ -9,9 +10,9 @@ export default class AjaxMgr {
 
     constructor(options = {}) {
         this.url = options.url;
-        //this.data = options.data;
+        //  this.data = options.data;
         this.dataType = options.dataType || 'jsonp';
-        //this.ajaxOptins = options.ajaxOptins;
+        //  this.ajaxOptins = options.ajaxOptins;
         this.options = options;
         this.cors = options.cors || 'false';
         this.success = options.success;
@@ -44,40 +45,40 @@ export default class AjaxMgr {
 
     request() {
         this.time = Date.now();
-        var that = this;
+        const that = this;
         axios.get(that.url)
-            .then(function (response) {
+            .then(response => {
                 that.success(response.data);
-                if (!that.isLoop)return;
-                var now = Date.now();
-                var diff = now - that.time;
-                var remain = that.minInterval - diff;
+                if (!that.isLoop) return;
+                const now = Date.now();
+                const diff = now - that.time;
+                const remain = that.minInterval - diff;
                 if (remain > 0) {
-                    setTimeout(()=> {
-                        that.request()
-                    }, remain)
+                    setTimeout(() => {
+                        that.request();
+                    }, remain);
                 } else {
-                    that.request()
+                    that.request();
                 }
             })
-            .catch(function (error) {
+            .catch(error => {
                 that.error(error);
                 if (!that.isLoop) {
                     return;
                 }
                 if (that.retryTimes > that.maxRetryTimes) {
-                    return
+                    return;
                 }
                 that.retryTimes++;
-                var now = Date.now();
-                var diff = now - that.time;
-                var remain = that.minInterval - diff;
+                const now = Date.now();
+                const diff = now - that.time;
+                const remain = that.minInterval - diff;
                 if (remain > 0) {
-                    setTimeout(()=> {
-                        that.request()
-                    }, remain)
+                    setTimeout(() => {
+                        that.request();
+                    }, remain);
                 } else {
-                    that.request()
+                    that.request();
                 }
             });
         return this;
