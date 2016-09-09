@@ -16,5 +16,5 @@ export default class MarketComponents {
 }
 
 // export
-exports.MarketComponents = MarketComponents;
+window.MarketComponents = MarketComponents;
 

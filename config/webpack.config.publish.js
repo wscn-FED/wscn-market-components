@@ -3,31 +3,19 @@ var fs = require('fs');
 var precss = require('precss');
 var autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var url = require('url');
 var paths = require('./paths');
 
-var Dashboard = require('webpack-dashboard');
-var DashboardPlugin = require('webpack-dashboard/plugin');
-var dashboard = new Dashboard();
-var vendor = 'wscn-react-vendor.min.js';
-// var homepagePath = require(paths.appPackageJson).homepage;
-// var publicPath = homepagePath ? url.parse(homepagePath).pathname : '/';
-var publicPath = '/';
-if (!publicPath.endsWith('/')) {
-    // Prevents incorrect paths in file-loader
-    publicPath += '/';
-}
 const outputFileName = 'react-market.min.js';
 module.exports = {
     entry: [
         path.join(paths.appSrc, 'entry')
     ],
     output: {
-        path: paths.appBuild,
-        filename: 'static/js/' + outputFileName,
-        publicPath: publicPath,
+        path: paths.appDist,
+        filename: 'js/' + outputFileName,
+        publicPath: '/',
         libraryTarget: 'umd',
         umdNamedDefine: true
     },
@@ -115,34 +103,16 @@ module.exports = {
             }
         ]
     },
-    postcss: function () {
-        return [autoprefixer, precss];
-    },
     eslint: {
         // TODO: consider separate config for production,
         // e.g. to enable no-console and no-debugger only in prod.
         configFile: path.join(__dirname, 'eslint.js'),
         useEslintrc: false
     },
+    postcss: function () {
+        return [autoprefixer, precss];
+    },
     plugins: [
-        new HtmlWebpackPlugin({
-            inject: true,
-            template: paths.appHtml,
-            favicon: paths.appFavicon,
-            vendor_dll: vendor,
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeRedundantAttributes: true,
-                useShortDoctype: true,
-                removeEmptyAttributes: true,
-                removeStyleLinkTypeAttributes: true,
-                keepClosingSlash: true,
-                minifyJS: true,
-                minifyCSS: true,
-                minifyURLs: true
-            }
-        }),
         new webpack.DefinePlugin({'process.env.NODE_ENV': '"production"'}),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.DedupePlugin(),
@@ -160,7 +130,6 @@ module.exports = {
                 screw_ie8: true
             }
         }),
-        new DashboardPlugin(dashboard.setData),
-        new ExtractTextPlugin('static/css/[name].css')
+        new ExtractTextPlugin('css/[name].css')
     ]
 };
