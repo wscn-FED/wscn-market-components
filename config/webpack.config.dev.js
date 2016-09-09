@@ -17,7 +17,7 @@ module.exports = {
     ],
     output: {
         // Next line is not used in dev but WebpackDevServer crashes without it:
-        path: paths.appBuild,
+        path: paths.appDev,
         pathinfo: true,
         filename: 'static/js/bundle.js',
         publicPath: '/'

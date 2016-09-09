@@ -22,7 +22,7 @@ var config = {
         ]
     },
     output: {
-        path: path.resolve("build/static/vendor"),
+        path: path.resolve(paths.appDev+"/static/vendor"),
         filename: "[name].js",
         library: "[name]", //和DllPlugin的name对应
         libraryTarget: 'var',

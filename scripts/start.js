@@ -103,7 +103,7 @@ function setupCompiler(port) {
 function runDevServer(port) {
     new WebpackDevServer(compiler, {
         historyApiFallback: true,
-        contentBase: "./build",
+        contentBase: "./dev",
         hot: true,
         publicPath: config.output.publicPath,
         quiet: true,
