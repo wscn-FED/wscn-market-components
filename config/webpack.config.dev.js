@@ -34,7 +34,8 @@ module.exports = {
             // a dependency in generated projects.
             // See https://github.com/facebookincubator/create-react-app/issues/255
             'babel-runtime/regenerator': require.resolve('babel-runtime/regenerator'),
-            'config': paths.appConfig  + (process.env.NODE_ENV || "development") + '.js',
+            'config': paths.appConfig + (process.env.NODE_ENV || "development") + '.js',
+            'theme': paths.theme + '/marketComponents-default.scss'
         }
     },
     resolveLoader: {
@@ -112,7 +113,7 @@ module.exports = {
             inject: true,
             template: paths.appHtml,
             favicon: paths.appFavicon,
-            vendor_dll:"vendor_dll.js",
+            vendor_dll: "vendor_dll.js",
             hash: true,
             minify: {
                 removeComments: false,

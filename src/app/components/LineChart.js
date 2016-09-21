@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './lineChat.scss';
 
 export default class LineChart extends Component {
     state = {
@@ -44,7 +43,7 @@ export default class LineChart extends Component {
     render() {
         const state = this.state;
         return (
-            <svg>
+            <svg className="lineChat-svg">
                 <polyline
                     className="path"
                     fill="none"

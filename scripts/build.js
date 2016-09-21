@@ -11,6 +11,7 @@ var config = require('../config/webpack.config.prod');
 var paths = require('../config/paths');
 var server = require('pushstate-server');
 var openBrowser = require('./utils/openBrowser');
+var http=require('http');
 // Remove all content but keep the directory so that
 // if you're in it, you don't end up in Trash
 rimrafSync(paths.appBuild + '/*');
@@ -19,7 +20,7 @@ var nodeModulesDir = path.resolve('./node_modules');
 var vendorProdPath = path.join(nodeModulesDir, '/wscn-react-vendor/dist');
 var destPath = path.resolve("build/static/vendor");
 fs.copy(vendorProdPath, destPath, function (err) {
-    if (err) return console.error(err)
+    if (err) return console.error(err);
     console.log("success!")
 });
 
