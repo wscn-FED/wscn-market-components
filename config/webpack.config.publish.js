@@ -9,9 +9,9 @@ var paths = require('./paths');
 
 const outputFileName = 'react-market.min.js';
 module.exports = {
-    entry: [
-        path.join(paths.appSrc, 'entry')
-    ],
+    entry: {
+        'main': path.join(paths.appSrc, 'entry.js'),
+    },
     output: {
         path: paths.appDist,
         filename: 'js/' + outputFileName,
@@ -32,6 +32,7 @@ module.exports = {
             // See https://github.com/facebookincubator/create-react-app/issues/255
             'babel-runtime/regenerator': require.resolve('babel-runtime/regenerator'),
             'config': paths.appConfig + (process.env.NODE_ENV || "development") + '.js',
+            'theme': paths.theme + '/marketComponents-black.scss'
         }
     },
     externals: {
@@ -77,7 +78,7 @@ module.exports = {
             {
                 test: /\.scss|\.css$/,
                 include: [paths.appSrc, paths.appNodeModules],
-                loader: ExtractTextPlugin.extract('style', ['css', 'postcss', 'sass'])
+                loader: 'null'
             },
             {
                 test: /\.json$/,
@@ -130,6 +131,5 @@ module.exports = {
                 screw_ie8: true
             }
         }),
-        new ExtractTextPlugin('css/[name].css')
     ]
 };

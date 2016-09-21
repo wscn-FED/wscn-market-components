@@ -21,6 +21,7 @@ if (!publicPath.endsWith('/')) {
 }
 const outputFileName = 'react-market.min.js';
 module.exports = {
+    bail: true,
     entry: [
         path.join(paths.appSrc, 'entry')
     ],
@@ -44,7 +45,7 @@ module.exports = {
             // See https://github.com/facebookincubator/create-react-app/issues/255
             'babel-runtime/regenerator': require.resolve('babel-runtime/regenerator'),
             'config': paths.appConfig + (process.env.NODE_ENV || "development") + '.js',
-            'theme': paths.theme + '/marketComponents-default.scss'
+            'theme': paths.theme + '/marketComponents-black.scss'
         }
     },
     externals: {

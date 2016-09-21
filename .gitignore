@@ -6,7 +6,7 @@ node_modules
 # production
 build
 dev
-
+dist/ignore
 # misc
 .DS_Store
 npm-debug.log

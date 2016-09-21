@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./scripts/start.js",
     "build": " node ./scripts/build.js",
-    "publish": "webpack --config config/webpack.config.publish.js",
+    "publish": "webpack --config config/webpack.config.publish.js && webpack --config config/webpack.config.buildCss.js",
     "dll-dev": "webpack --config config/webpack.dll.config.js --progress",
     "dll": "NODE_ENV=production webpack --config config/webpack.dll.config.js --progress",
     "build-dev": "npm run dll-dev && node ./scripts/start.js"
@@ -60,6 +60,7 @@
     "json-loader": "0.5.4",
     "mobx-react-devtools": "^4.2.4",
     "node-sass": "^3.8.0",
+    "null-loader": "^0.1.1",
     "opn": "4.0.2",
     "postcss-loader": "0.9.1",
     "precss": "^1.4.0",
