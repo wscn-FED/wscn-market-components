@@ -23,6 +23,9 @@ npm install wscn-react-vendor
 
 ```js
 	<link href="**/marketComponents-default.css" rel="stylesheet">
+	
+	<div id="root"></div>
+	
 	<script src="**/wscn-react-vendor.min.js"></script>
 	<script src="/**/react-market.min.js"></script>
 	
@@ -47,6 +50,8 @@ npm install wscn-react-vendor
         }).init();
 	<script>		
 ```
+demmo:
+
 ![demo](https://github.com/wscn-FED/wscn-market-components/raw/master/images/demo.png)
 
 
@@ -54,8 +59,10 @@ npm install wscn-react-vendor
 
 ### dev
 
-* `进入assets/srv目录`执行
 ```
-$ gulp dev-derver
+$ npm start
+
 ```
-* 启服务，如访问pc_r项目可以通过 `http://localhost:9527/assets/src/pc_r/` 进行测试
+you will see in `http://localhost:9527`;
+
+

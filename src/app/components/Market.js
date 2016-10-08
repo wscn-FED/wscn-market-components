@@ -1,28 +1,25 @@
 import React, {Component} from 'react';
-import 'theme';
 import MarketItem from './Market-item';
-
 import MarketsData from '../models/MarketModel';
 
-
-export default class Market extends Component {
+export default class Market extends React.PureComponent {
     state = {
         priceData: null,
         klineData: null
     };
 
     componentDidMount() {
-        const props = this.props;
-        const priceUrl = this.createAjaxUrl(props.baseApi, props.priceApi, props.symbols, props.priceApiField);
+        const {config} = this.props;
+        const priceUrl = this.createAjaxUrl(config.baseApi, config.priceApi, config.symbols, config.priceApiField);
         const priceAjaxConfig = {
             url: priceUrl,
             isLoop: true,
-            minInterval: props.priceMinInterval,
+            minInterval: config.priceMinInterval,
             successFn: this.setPriceData.bind(this)
         };
         MarketsData.loadPriceDataAjax(priceAjaxConfig);
 
-        const klineUrl = this.createAjaxUrl(props.baseApi, props.klineApi, props.symbols, props.klineApiField);
+        const klineUrl = this.createAjaxUrl(config.baseApi, config.klineApi, config.symbols, config.klineApiField);
         const klineAjaxConfig = {
             url: klineUrl,
             isLoop: false,
@@ -51,8 +48,10 @@ export default class Market extends Component {
         const symbolsUrl = symbols.join(',');
         return baseApi + serchApi + symbolsUrl + apiField;
     }
+
     render() {
-        const symbolsArr = this.props.symbols;
+        const {config} = this.props;
+        const symbolsArr = config.symbols;
         const marketComponents = symbolsArr.map((item) => {
             let priceData = {};
             let klineData = {};

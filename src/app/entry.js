@@ -1,20 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'theme';
 import MarketContainer from './components/Market';
+import defaultConfigs from './defaultConfigs.json';
 
-export default class MarketComponents {
-    constructor(options = {}) {
-        this.parentDom = options.parentDom;
-        this.settings = options.options;
+
+export default class TilesetQuote {
+    constructor(config) {
+        this.config = Object.assign({}, defaultConfigs, config);
     }
 
-    init() {
-        this.pageElem = (<MarketContainer {...this.settings} />);
-        this.MarketContainer = ReactDOM.render(this.pageElem, this.parentDom);
-        return this;
+    init(el) {
+        ReactDOM.render(
+            <MarketContainer config={this.config}/>,
+            el
+        );
     }
 }
 
 // export
-window.MarketComponents = MarketComponents;
+window.WSCNTilesetQuote = TilesetQuote;
 
