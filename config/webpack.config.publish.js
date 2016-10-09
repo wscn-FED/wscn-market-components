@@ -7,7 +7,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var url = require('url');
 var paths = require('./paths');
 
-const outputFileName = require('../package.json').name;
+const outputFileName = require('../package.json').name+'.min.js';
 module.exports = {
     entry: {
         'main': path.join(paths.appSrc, 'entry.js'),

@@ -1,6 +1,6 @@
 {
   "name": "wscn-tilesetQuote-component",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "wscn-tilesetQuote-component",
   "main": "dist/js/main.js",
   "scripts": {
