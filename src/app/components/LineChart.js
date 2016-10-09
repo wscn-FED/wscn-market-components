@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class LineChart extends Component {
+export default class LineChart extends React.PureComponent {
     state = {
         dataPoints: '0,50 200,0'
     };

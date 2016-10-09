@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'theme';
-import MarketContainer from './components/Market';
+import MarketContainer from './components/TilesetQuoteList';
 import defaultConfigs from './defaultConfigs.json';
 
 

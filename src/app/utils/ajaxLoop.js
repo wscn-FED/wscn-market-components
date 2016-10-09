@@ -3,19 +3,16 @@
  */
 import axios from 'axios';
 
-function noop() {
+function noop(err) {
+    console.log(err);
 }
 
 export default class AjaxMgr {
 
     constructor(options = {}) {
-        this.url = options.url;
-        //  this.data = options.data;
-        this.dataType = options.dataType || 'jsonp';
-        //  this.ajaxOptins = options.ajaxOptins;
-        this.options = options;
-        this.cors = options.cors || 'false';
+        this.config = options.config;
         this.success = options.success;
+        this.stateName = options.stateName || 'data';
         this.error = options.error || noop;
         this.minInterval = options.minInterval || 5000;
         this.isLoop = options.isLoop || false;
@@ -28,57 +25,41 @@ export default class AjaxMgr {
         return this;
     }
 
-    setUrl(url) {
-        this.url = url;
-        return this;
-    }
-
-    setDataType(dataType) {
-        this.dataType = dataType;
-        return this;
-    }
-
-    setCors(cors) {
-        this.cors = cors;
-        return this;
-    }
-
-    request() {
-        this.time = Date.now();
-        const that = this;
-        axios.get(that.url)
+    fetchData = () => {
+        this.latestFetchAt = Date.now();
+        axios(this.config)
             .then(response => {
-                that.success(response.data);
-                if (!that.isLoop) return;
+                this.success(this.stateName, response.data);
+                if (!this.isLoop) return;
                 const now = Date.now();
-                const diff = now - that.time;
-                const remain = that.minInterval - diff;
+                const diff = now - this.latestFetchAt;
+                const remain = this.minInterval - diff;
                 if (remain > 0) {
                     setTimeout(() => {
-                        that.request();
+                        this.fetchData();
                     }, remain);
                 } else {
-                    that.request();
+                    this.fetchData();
                 }
             })
             .catch(error => {
-                that.error(error);
-                if (!that.isLoop) {
+                this.error(error);
+                if (!this.isLoop) {
                     return;
                 }
-                if (that.retryTimes > that.maxRetryTimes) {
+                if (this.retryTimes > this.maxRetryTimes) {
                     return;
                 }
-                that.retryTimes++;
+                this.retryTimes++;
                 const now = Date.now();
-                const diff = now - that.time;
-                const remain = that.minInterval - diff;
+                const diff = now - this.latestFetchAt;
+                const remain = this.minInterval - diff;
                 if (remain > 0) {
                     setTimeout(() => {
-                        that.request();
+                        this.fetchData();
                     }, remain);
                 } else {
-                    that.request();
+                    this.fetchData();
                 }
             });
         return this;

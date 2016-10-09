@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import LineChart from './LineChart';
 
-export default class MarketItem extends Component {
+export default class MarketItem extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -58,7 +58,7 @@ export default class MarketItem extends Component {
             <div className="market-item-container">
                 <div className="market-quotecard-container">
                     <div className="market-quotecard-left">
-                        <div className="symbol-name{}">{symbolName}</div>
+                        <div className="symbol-name">{symbolName}</div>
                         <div className="last-price">{lastPrice}</div>
                     </div>
                     <div className="market-quotecard-right">
