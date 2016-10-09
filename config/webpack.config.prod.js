@@ -45,7 +45,7 @@ module.exports = {
             // See https://github.com/facebookincubator/create-react-app/issues/255
             'babel-runtime/regenerator': require.resolve('babel-runtime/regenerator'),
             'config': paths.appConfig + (process.env.NODE_ENV || "development") + '.js',
-            'theme': paths.theme + '/marketComponents-black.scss'
+            'theme': paths.theme + '/tilesetQuoteComponents-black.scss'
         }
     },
     externals: {

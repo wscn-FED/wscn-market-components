@@ -1,9 +1,9 @@
-## What's wscn-market ?
+## What's wscn-tilesetQuote-component ?
 It's a react component,you can use it easily in everywhere.
 
 ### How to use?
 ```bash
-npm install wscn-market-components 
+npm install wscn-tilesetQuote-component 
 ```
 
 it's depend 
@@ -59,6 +59,18 @@ demmo:
 
 ### dev
 
+dev is use webpack-dll
+so if you are the first time run ,you  should 
+
+```
+$ npm run dll-dev
+
+```
+make vendor-manifest-dev.json first
+
+
+otherwise
+
 ```
 $ npm start
 
@@ -66,3 +78,12 @@ $ npm start
 you will see in `http://localhost:9527`;
 
 
+### build
+```
+$ npm build
+
+```
+you will see in `http://localhost:9528`;
+demmo:
+
+![demo](https://github.com/wscn-FED/wscn-market-components/raw/master/images/demo2.png)
