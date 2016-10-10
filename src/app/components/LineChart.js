@@ -8,6 +8,7 @@ export default class LineChart extends React.PureComponent {
     componentDidMount() {
         this.handleLineData(this.props.klineData);
     }
+
     handleLineData(dataArray) {
         const minValue = Math.min.apply(null, dataArray);
         const maxValue = Math.max.apply(null, dataArray);
@@ -22,11 +23,11 @@ export default class LineChart extends React.PureComponent {
         const chartHeight = 30;
         const valueDelta = maxValue - minValue;
         const dotArray = dataArray.map((value, index) => {
+            const x = index / (dataArray.length) * chartWidth;
             if (valueDelta === 0) {
-                return 0 + ',' + 0;
+                return x + ',' + chartHeight / 2;
             }
             const y = (maxValue - value) / valueDelta * chartHeight;
-            const x = index / (dataArray.length) * chartWidth;
             return x + ',' + y;
         });
         return dotArray.join(' ');

@@ -1,6 +1,6 @@
 {
   "name": "wscn-tilesetQuote-component",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "wscn-tilesetQuote-component",
   "main": "dist/js/main.js",
   "scripts": {
@@ -86,3 +86,4 @@
     "extends": "./config/eslint.js"
   }
 }
+

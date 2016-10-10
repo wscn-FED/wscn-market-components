@@ -6,10 +6,6 @@
   }
 }
 
-* {
-  box-sizing: border-box;
-}
-
 $symbolNameColor: #333;
 $priceColor: #999;
 $upColor: #F44242;
@@ -19,11 +15,10 @@ $chartColor: #ccc;
 .tilesetQuote-component-container {
   position: relative;
   border: 1px solid #E6E6E6;
+  height: 80px;
   background-color: #fff;
   display: inline-block;
   @include clearfix;
-  box-sizing: border-box;
-
   .lineChat-svg {
     width: 80px;
     height: 30px;
@@ -36,12 +31,16 @@ $chartColor: #ccc;
   }
 
   .market-item-container {
+    box-sizing: border-box;
     padding: 10px 16px;
     float: left;
     width: 170px;
     height: 80px;
     border-left: 1px solid #F0F1F5;
     position: relative;
+    &:first-of-type, &:last-of-type {
+      width: 174px;
+    }
   }
   .market-quotecard-container {
     @include clearfix;

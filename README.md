@@ -44,7 +44,7 @@ npm install wscn-react-vendor
             priceApi: "real",
             priceApiField: "prod_name,last_px,px_change,px_change_rate,price_precision,securities_type",
             klineApi: "kline",
-            candle_period:1,
+            candle_period:5,
             data_count:80,
             end_time:0,
             klineApiField: "close_px"
