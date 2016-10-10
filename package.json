@@ -1,6 +1,6 @@
 {
   "name": "wscn-tilesetQuote-component",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "wscn-tilesetQuote-component",
   "main": "dist/js/main.js",
   "scripts": {
@@ -75,7 +75,7 @@
     "webpack-dashboard": "^0.1.8",
     "webpack-dev-server": "1.14.1"
   },
-  "dependencies": {
+  "peerDependencies":{
     "axios": "^0.14.0",
     "classnames": "^2.2.5",
     "react": "^15.2.1",
