@@ -13,6 +13,7 @@ $downColor: #22C761;
 $chartColor: #ccc;
 
 .tilesetQuote-component-container {
+  box-sizing: border-box;
   position: relative;
   border: 1px solid #E6E6E6;
   height: 80px;
@@ -21,7 +22,7 @@ $chartColor: #ccc;
   @include clearfix;
   .lineChat-svg {
     width: 80px;
-    height: 30px;
+    height: 24px;
     position: absolute;
     bottom: 10px;
     left: 16px;
