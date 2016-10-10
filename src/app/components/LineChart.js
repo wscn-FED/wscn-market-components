@@ -8,14 +8,6 @@ export default class LineChart extends React.PureComponent {
     componentDidMount() {
         this.handleLineData(this.props.klineData);
     }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.state === nextState) {
-            return false;
-        }
-        return true;
-    }
-
     handleLineData(dataArray) {
         const minValue = Math.min.apply(null, dataArray);
         const maxValue = Math.max.apply(null, dataArray);
@@ -41,6 +33,7 @@ export default class LineChart extends React.PureComponent {
     }
 
     render() {
+        console.log('svg render');
         const state = this.state;
         return (
             <svg className="lineChat-svg">

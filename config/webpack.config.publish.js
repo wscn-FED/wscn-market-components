@@ -3,7 +3,6 @@ var fs = require('fs');
 var precss = require('precss');
 var autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var url = require('url');
 var paths = require('./paths');
 
