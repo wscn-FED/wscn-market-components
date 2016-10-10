@@ -12,7 +12,8 @@ export default class MarketItem extends React.PureComponent {
                 lastPrice: 'last_px',
                 change: 'px_change',
                 changeRate: 'px_change_rate',
-                precision: 'price_precision'
+                precision: 'price_precision',
+                type: 'securities_type'
             },
             kline: {
                 closePx: 'close_px'
@@ -50,6 +51,7 @@ export default class MarketItem extends React.PureComponent {
         const props = this.props;
         const precision = this.getData('precision', 'price');
         const symbolName = this.getData('name', 'price');
+        const type = this.getData('type', 'price');
         const lastPrice = this.getData('lastPrice', 'price');
         const change = this.fixNum(this.getData('change', 'price'), precision);
         const changeRate = this.fixNum(this.getData('changeRate', 'price'), 2, 'rate');
@@ -57,7 +59,8 @@ export default class MarketItem extends React.PureComponent {
         const upORdownBool = this.justUpORdown(change);
         const upORdownClass = classNames({up: upORdownBool}, {down: !upORdownBool});
         return (
-            <div className="market-item-container">
+            <a href={'https://markets.wallstreetcn.com/' + type + '/' + props.symbol} target="_blank"
+               rel="noopener noreferrer" className="market-item-container">
                 <div className="market-quotecard-container">
                     <div className="market-quotecard-left">
                         <div className="symbol-name">{symbolName}</div>
@@ -73,7 +76,7 @@ export default class MarketItem extends React.PureComponent {
                     ? <LineChart klineData={klineData}/>
                     : null
                 }
-            </div>
+            </a>
         );
     }
 }

@@ -19,7 +19,7 @@ export default class LineChart extends React.PureComponent {
 
     cookCharts(dataArray, minValue, maxValue) {
         const chartWidth = 80;
-        const chartHeight = 34;
+        const chartHeight = 30;
         const valueDelta = maxValue - minValue;
         const dotArray = dataArray.map((value, index) => {
             if (valueDelta === 0) {

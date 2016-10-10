@@ -83,7 +83,7 @@ export default class QuoteList extends React.PureComponent {
                 }
 
             };
-            return (<QuoteItem key={item} {...data} />);
+            return (<QuoteItem key={item} symbol={item} {...data} />);
         });
 
         return <div className="tilesetQuote-component-container"> {quoteComponents} </div>;

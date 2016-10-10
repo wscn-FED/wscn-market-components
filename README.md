@@ -37,17 +37,17 @@ npm install wscn-react-vendor
                 "UKOil",
                 "000001",
                 "EURUSD",
-                "USDJPY",
+                "USDJPY"
             ],
             priceMinInterval: 2000,
             baseApi: "https://forexdata.wallstreetcn.com/",
             priceApi: "real",
-            priceApiField: "prod_name,last_px,px_change,px_change_rate",
+            priceApiField: "prod_name,last_px,px_change,px_change_rate,price_precision,securities_type",
             klineApi: "kline",
-            candle_period:'1',
-            data_count:'80',
-            end_time:'0',
-            klineApiField: "close_px",
+            candle_period:1,
+            data_count:80,
+            end_time:0,
+            klineApiField: "close_px"
         };
         new WSCNTilesetQuote(options).init(mountDom);
 	<script>		

@@ -20,8 +20,12 @@ $chartColor: #ccc;
   @include clearfix;
   box-sizing: border-box;
 
-  //svg图表
-  .lineChat-svg{
+  .lineChat-svg {
+    width: 80px;
+    height: 30px;
+    position: absolute;
+    bottom: 10px;
+    left: 16px;
     .path {
       stroke: $chartColor;
     }
@@ -67,6 +71,7 @@ $chartColor: #ccc;
     .changeRate {
       padding-top: 6px;
       font-size: 12px;
+      text-align: right;
     }
   }
 }
