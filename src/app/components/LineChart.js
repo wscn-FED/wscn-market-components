@@ -33,7 +33,6 @@ export default class LineChart extends React.PureComponent {
     }
 
     render() {
-        console.log('svg render');
         const state = this.state;
         return (
             <svg className="lineChat-svg">
