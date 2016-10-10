@@ -11,7 +11,8 @@ export default class MarketItem extends React.PureComponent {
                 name: 'prod_name',
                 lastPrice: 'last_px',
                 change: 'px_change',
-                changeRate: 'px_change_rate'
+                changeRate: 'px_change_rate',
+                precision: 'price_precision'
             },
             kline: {
                 closePx: 'close_px'
@@ -47,9 +48,10 @@ export default class MarketItem extends React.PureComponent {
 
     render() {
         const props = this.props;
+        const precision = this.getData('precision', 'price');
         const symbolName = this.getData('name', 'price');
         const lastPrice = this.getData('lastPrice', 'price');
-        const change = this.fixNum(this.getData('change', 'price'), 4);
+        const change = this.fixNum(this.getData('change', 'price'), precision);
         const changeRate = this.fixNum(this.getData('changeRate', 'price'), 2, 'rate');
         const klineData = props.data.kline;
         const upORdownBool = this.justUpORdown(change);

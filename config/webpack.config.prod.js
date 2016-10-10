@@ -29,7 +29,7 @@ module.exports = {
         path: paths.appBuild,
         filename: 'static/js/' + outputFileName,
         publicPath: publicPath,
-        libraryTarget: 'umd',
+        libraryTarget: 'var',
         umdNamedDefine: true
     },
     resolve: {
@@ -45,29 +45,14 @@ module.exports = {
             // See https://github.com/facebookincubator/create-react-app/issues/255
             'babel-runtime/regenerator': require.resolve('babel-runtime/regenerator'),
             'config': paths.appConfig + (process.env.NODE_ENV || "development") + '.js',
-            'theme': paths.theme + '/tilesetQuoteComponents-black.scss'
+            'theme': paths.theme + '/black.scss'
         }
     },
     externals: {
-        'react': {
-            root: 'React',
-            commonjs: 'react',
-            commonjs2: 'react',
-            amd: 'react'
-        },
-        'react-dom': {
-            root: 'ReactDOM',
-            commonjs: 'react-dom',
-            commonjs2: 'react-dom',
-            amd: 'react-dom',
-        },
-        'react-addons-css-transition-group': {
-            root: ['React', 'addons', 'CSSTransitionGroup'],
-            commonjs: 'react-addons-css-transition-group',
-            commonjs2: 'react-addons-css-transition-group',
-            amd: 'react-addons-css-transition-group'
-        },
-        'axios': 'axios'
+        'react': 'var React',
+        'react-dom': 'var ReactDOM',
+        // 'react-addons-css-transition-group': 'var',
+        'axios': 'var axios'
     },
     resolveLoader: {
         root: paths.ownNodeModules,
