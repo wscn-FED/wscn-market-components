@@ -1,6 +1,6 @@
 {
   "name": "wscn-tilesetQuote-component",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "wscn-tilesetQuote-component",
   "main": "dist/js/main.js",
   "scripts": {
@@ -79,8 +79,7 @@
     "axios": "^0.14.0",
     "classnames": "^2.2.5",
     "react": "^15.2.1",
-    "react-dom": "^15.2.1",
-    "wscn-react-vendor": "0.0.4"
+    "react-dom": "^15.2.1"
   },
   "eslintConfig": {
     "extends": "./config/eslint.js"

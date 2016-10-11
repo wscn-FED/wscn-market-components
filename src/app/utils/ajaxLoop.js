@@ -11,7 +11,7 @@ export default class AjaxMgr {
 
     constructor(options = {}) {
         this.config = options.config;
-        this.success = options.success;
+        this.success = typeof options.success === 'function' ? options.success : noop;
         this.stateName = options.stateName || 'data';
         this.error = options.error || noop;
         this.minInterval = options.minInterval || 5000;
