@@ -16,6 +16,5 @@ module.exports = {
     appPackageJson: resolveApp('package.json'),
     appSrc: resolveApp('src/app'),
     manifestSrc: resolveApp('manifest'),
-    appNodeModules: resolveApp('node_modules'),
-    ownNodeModules: resolveApp('node_modules')
+    appNodeModules: resolveApp('node_modules')
 };
