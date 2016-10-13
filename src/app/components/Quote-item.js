@@ -36,7 +36,7 @@ export default class MarketItem extends React.PureComponent {
     };
 
     fixNum = (num, digit, type) => {
-        if (!num) return;
+        if (num == undefined) return;
         let fixedNum = num.toFixed(digit);
         if (+num >= 0) {
             fixedNum = '+' + fixedNum;
