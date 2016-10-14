@@ -9,7 +9,6 @@ var paths = require('./paths');
 const outputFileName = require('../package.json').name + '.min.js';
 module.exports = {
     entry: [
-        path.join(paths.appNodeModules, 'core-js/modules/es6.object.assign'),
         path.join(paths.appSrc, 'entry')
     ],
     output: {

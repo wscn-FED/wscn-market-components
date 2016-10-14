@@ -23,7 +23,6 @@ const outputFileName = 'react-market.min.js';
 module.exports = {
     bail: true,
     entry: [
-        path.join(paths.appNodeModules, 'core-js/modules/es6.object.assign'),
         path.join(paths.appSrc, 'entry')
     ],
     output: {
