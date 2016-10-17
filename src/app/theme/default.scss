@@ -9,13 +9,13 @@
 $symbolNameColor: #333;
 $priceColor: #999;
 $upColor: #F44242;
-$downColor: #22C761;
+$downColor: #1DAD55;
 $chartColor: #ccc;
 
 .tilesetQuote-component-container {
   box-sizing: border-box;
   position: relative;
-  border: 1px solid #E6E6E6;
+  border: 1px solid #EBEBEB;
   height: 80px;
   background-color: #fff;
   display: inline-block;
@@ -33,7 +33,7 @@ $chartColor: #ccc;
 
   .market-item-container {
     box-sizing: border-box;
-    padding: 10px 16px;
+    padding: 10px 12px;
     float: left;
     width: 170px;
     height: 80px;
@@ -73,7 +73,7 @@ $chartColor: #ccc;
       font-size: 18px;
     }
     .change-rate {
-      padding-top: 6px;
+      padding-top: 5px;
       font-size: 12px;
       text-align: right;
     }
