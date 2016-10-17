@@ -15,7 +15,7 @@ $chartColor: #ccc;
 .tilesetQuote-component-container {
   box-sizing: border-box;
   position: relative;
-  border: 1px solid #EBEBEB;
+  //border: 1px solid #EBEBEB;
   height: 80px;
   background-color: #fff;
   display: inline-block;
@@ -33,14 +33,24 @@ $chartColor: #ccc;
 
   .market-item-container {
     box-sizing: border-box;
-    padding: 10px 12px;
+    padding: 10px 12px 10px 11px;
     float: left;
     width: 170px;
     height: 80px;
     border-left: 1px solid #F0F1F5;
+    border-right: 1px solid #FFF;
+    border-top: 1px solid #EBEBEB;
+    border-bottom: 1px solid #EBEBEB;
     position: relative;
+    &:last-of-type {
+      border-right: 1px solid #F0F1F5;
+    }
     &:first-of-type, &:last-of-type {
       width: 174px;
+    }
+    &:hover {
+      background-color: #e6f2ff;
+      border: 1px solid #1482f0;
     }
   }
   .market-quotecard-container {
@@ -58,6 +68,7 @@ $chartColor: #ccc;
     }
     .last-price {
       font-size: 12px;
+      line-height: 12px;
       color: $priceColor;
       padding-top: 6px;
     }
@@ -71,6 +82,7 @@ $chartColor: #ccc;
     }
     .change {
       font-size: 18px;
+      line-height: 18px;
     }
     .change-rate {
       padding-top: 5px;
