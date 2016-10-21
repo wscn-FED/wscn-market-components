@@ -52,9 +52,35 @@ npm install wscn-react-vendor
         new WSCNTilesetQuote(options).init(mountDom);
 	<script>		
 ```
-demmo:
+demo:
 
 ![demo](https://github.com/wscn-FED/wscn-market-components/raw/master/images/demo.png)
+
+
+
+
+|    Property    | Type |          Description          | default |
+| -------------  | ---- |          -----------          | ------- |
+| symbols  | array | the symbols you want show | ["XAUUSD","UKOil","000001","EURUSD","USDJPY"] |
+| priceMinInterval      | number |the price loop minInterval time | 5*1000 |
+| candle_period | number | kline period | 5 |
+| data_count | number | kline count | 80 |
+
+
+### candle_period  参数说明
+| 参数        | 值   |   含义  |
+| --------   | -----:  | :----:  |
+| candle_period |  |   K线类型  |
+|         |    1    |  1分钟  |
+|         |    2    |  5分钟  |
+|         |    3    |  15分钟  |
+|         |    4    |  30分钟  |
+|         |    5    |  1小时  |
+|         |    6    |  2小时  |
+|         |    7    |  4小时  |
+|         |    8    |  1天  |
+|         |    10    |  周线  |
+|         |    11    |  1月  |
 
 
 
