@@ -11,6 +11,9 @@ var paths = require('./paths');
 var Dashboard = require('webpack-dashboard');
 var DashboardPlugin = require('webpack-dashboard/plugin');
 var dashboard = new Dashboard();
+
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 var vendor = 'wscn-react-vendor.min.js';
 // var homepagePath = require(paths.appPackageJson).homepage;
 // var publicPath = homepagePath ? url.parse(homepagePath).pathname : '/';
@@ -148,6 +151,21 @@ module.exports = {
             }
         }),
         new DashboardPlugin(dashboard.setData),
-        new ExtractTextPlugin('static/css/[name].css')
+        new ExtractTextPlugin('static/css/[name].css'),
+        new BundleAnalyzerPlugin({
+            // Start analyzer HTTP-server.
+            // You can use this plugin to just generate Webpack Stats JSON file by setting `startAnalyzer` to `false`
+            // and `generateStatsFile` to `true`.
+            startAnalyzer: true,
+            // Analyzer HTTP-server port
+            analyzerPort: 1111,
+            // Automatically open analyzer page in default browser if `startAnalyzer` is `true`
+            openAnalyzer: true,
+            // If `true`, Webpack Stats JSON file will be generated in bundles output directory
+            generateStatsFile: false,
+            // Name of Webpack Stats JSON file that will be generated if `generateStatsFile` is `true`.
+            // Relative to bundles output directory.
+            statsFilename: 'stats.json',
+        })
     ]
 };

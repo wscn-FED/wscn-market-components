@@ -115,3 +115,7 @@ you will see in `http://localhost:9528`;
 demmo:
 
 ![demo](https://github.com/wscn-FED/wscn-market-components/raw/master/images/demo2.png)
+
+you will see in `http://http://localhost:1111/` the analyzer;
+
+![demo](https://github.com/wscn-FED/wscn-market-components/raw/master/images/demo3.png)
